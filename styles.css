@@ -80,11 +80,11 @@ h1, h2, h3, .badge {
   font-weight: 800;
   letter-spacing: -0.5px;
 }
-.logo-icon {
-  font-size: 28px;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
 }
 .nav-links {
   display: flex;
