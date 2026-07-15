@@ -60,4 +60,23 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
   });
+
+  // Donation Modal Logic
+  const btnDonateNav = document.getElementById('btn-donate-nav');
+  const donationOverlay = document.getElementById('donation-overlay');
+  const btnCloseDonate = document.getElementById('btn-close-donate');
+
+  if (btnDonateNav && donationOverlay && btnCloseDonate) {
+    btnDonateNav.addEventListener('click', () => {
+      donationOverlay.classList.add('active');
+    });
+    btnCloseDonate.addEventListener('click', () => {
+      donationOverlay.classList.remove('active');
+    });
+    donationOverlay.addEventListener('click', (e) => {
+      if (e.target === donationOverlay) {
+        donationOverlay.classList.remove('active');
+      }
+    });
+  }
 });
