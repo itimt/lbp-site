@@ -79,4 +79,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
   }
+
+  // FAQ Logic
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const faqItem = btn.parentElement;
+      const faqAnswer = btn.nextElementSibling;
+      const isActive = faqItem.classList.contains('active');
+      
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+        item.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      if (!isActive) {
+        faqItem.classList.add('active');
+        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + "px";
+      }
+    });
+  });
 });
