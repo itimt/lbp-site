@@ -344,6 +344,10 @@ h1, h2, h3, .badge {
   border-radius: 16px;
   backdrop-filter: blur(10px);
   transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .testimonial-card:hover {
   transform: translateY(-5px);
@@ -364,6 +368,7 @@ h1, h2, h3, .badge {
   display: flex;
   align-items: center;
   gap: 15px;
+  justify-content: center;
 }
 .reviewer-avatar {
   width: 45px;
