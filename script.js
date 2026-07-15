@@ -5,22 +5,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Fetch latest release from GitHub API
     // Repositório: itimt/lbp-iptv-releases
-    const response = await fetch('https://api.github.com/repos/itimt/lbp-iptv-releases/releases/latest');
+    const response = await fetch('https://api.github.com/repos/itimt/lbp-iptv-releases/releases');
     
     if (response.ok) {
-      const data = await response.json();
-      const version = data.tag_name; // e.g. "v1.0.13"
-      
-      // Update label
-      if (versionLabel) {
-        versionLabel.textContent = `Versão Mais Recente (${version})`;
-      }
-      
-      // Find the .exe asset URL
-      if (data.assets && data.assets.length > 0) {
-        const exeAsset = data.assets.find(asset => asset.name.endsWith('.exe'));
-        if (exeAsset) {
-          downloadBtn.href = exeAsset.browser_download_url;
+      const releases = await response.json();
+      if (releases.length > 0) {
+        const latestRelease = releases[0];
+        const version = latestRelease.tag_name; // e.g. "v1.0.13"
+        
+        // Update label
+        if (versionLabel) {
+          versionLabel.textContent = `Versão Mais Recente (${version})`;
+        }
+        
+        // Find the .exe asset URL
+        if (latestRelease.assets && latestRelease.assets.length > 0) {
+          const exeAsset = latestRelease.assets.find(asset => asset.name.endsWith('.exe'));
+          if (exeAsset) {
+            downloadBtn.href = exeAsset.browser_download_url;
+          }
+        }
+        
+        // Sum total downloads
+        let totalDownloads = 0;
+        releases.forEach(release => {
+          if (release.assets) {
+            release.assets.forEach(asset => {
+              if (asset.name.endsWith('.exe')) {
+                totalDownloads += asset.download_count;
+              }
+            });
+          }
+        });
+        
+        const counterDiv = document.getElementById('download-counter');
+        const countNumber = document.getElementById('download-count-number');
+        if (counterDiv && countNumber && totalDownloads > 0) {
+          countNumber.textContent = totalDownloads;
+          counterDiv.style.display = 'block';
         }
       }
     }
