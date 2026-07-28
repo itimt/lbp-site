@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const downloadBtnAndroid = document.getElementById('download-btn-android');
         
         if (versionLabelAndroid) {
-          versionLabelAndroid.textContent = `Versão Mais Recente (${androidVersion})`;
+          versionLabelAndroid.textContent = `Versão Mais Recente`;
         }
         
         if (latestAndroidRelease.assets && latestAndroidRelease.assets.length > 0) {
