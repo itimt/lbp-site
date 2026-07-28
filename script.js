@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const versionLabel = document.getElementById('version-label');
   const downloadBtn = document.getElementById('download-btn');
+  let totalDownloads = 0;
   
   try {
     // Fetch latest release from GitHub API
@@ -26,8 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         }
         
-        // Sum total downloads
-        let totalDownloads = 0;
+        // Sum total downloads (Windows)
         releases.forEach(release => {
           if (release.assets) {
             release.assets.forEach(asset => {
@@ -37,6 +37,43 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
           }
         });
+      }
+    }
+    
+    // Fetch latest release from Android GitHub API (itimt/update)
+    const androidResponse = await fetch('https://api.github.com/repos/itimt/update/releases');
+    if (androidResponse.ok) {
+      const androidReleases = await androidResponse.json();
+      if (androidReleases.length > 0) {
+        const latestAndroidRelease = androidReleases[0];
+        const androidVersion = latestAndroidRelease.tag_name;
+        
+        const versionLabelAndroid = document.getElementById('version-label-android');
+        const downloadBtnAndroid = document.getElementById('download-btn-android');
+        
+        if (versionLabelAndroid) {
+          versionLabelAndroid.textContent = `${androidVersion} (APK)`;
+        }
+        
+        if (latestAndroidRelease.assets && latestAndroidRelease.assets.length > 0) {
+          const apkAsset = latestAndroidRelease.assets.find(asset => asset.name.endsWith('.apk'));
+          if (apkAsset && downloadBtnAndroid) {
+            downloadBtnAndroid.href = apkAsset.browser_download_url;
+          }
+        }
+        
+        // Sum total downloads (Android)
+        androidReleases.forEach(release => {
+          if (release.assets) {
+            release.assets.forEach(asset => {
+              if (asset.name.endsWith('.apk')) {
+                totalDownloads += asset.download_count;
+              }
+            });
+          }
+        });
+      }
+    }
         
         const counterDiv = document.getElementById('download-counter');
         const countNumber = document.getElementById('download-count-number');
