@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     // Fetch latest release from GitHub API
     // Repositório: itimt/lbp-iptv-releases
-    const response = await fetch('https://api.github.com/repos/itimt/lbp-iptv-releases/releases');
+    const response = await fetch('https://api.github.com/repos/itimt/lbp-iptv-releases/releases', { cache: 'no-store' });
     
     if (response.ok) {
       const releases = await response.json();
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     // Fetch latest release from Android GitHub API (itimt/update)
-    const androidResponse = await fetch('https://api.github.com/repos/itimt/update/releases');
+    const androidResponse = await fetch('https://api.github.com/repos/itimt/update/releases', { cache: 'no-store' });
     if (androidResponse.ok) {
       const androidReleases = await androidResponse.json();
       if (androidReleases.length > 0) {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const downloadBtnAndroid = document.getElementById('download-btn-android');
         
         if (versionLabelAndroid) {
-          versionLabelAndroid.textContent = `${androidVersion} (APK)`;
+          versionLabelAndroid.textContent = `Versão Mais Recente (${androidVersion})`;
         }
         
         if (latestAndroidRelease.assets && latestAndroidRelease.assets.length > 0) {
