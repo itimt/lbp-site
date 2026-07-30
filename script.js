@@ -3,10 +3,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const downloadBtn = document.getElementById('download-btn');
   const versionLabelAndroid = document.getElementById('version-label-android');
   const downloadBtnAndroid = document.getElementById('download-btn-android');
-  const counterDiv = document.getElementById('download-counter');
-  const countNumber = document.getElementById('download-count-number');
   
-  let totalDownloads = 0;
+  const counterWinDiv = document.getElementById('download-counter-win');
+  const countWinNumber = document.getElementById('download-count-win-number');
+  const counterAndroidDiv = document.getElementById('download-counter-android');
+  const countAndroidNumber = document.getElementById('download-count-android-number');
+  
+  let winDownloads = 0;
+  let androidDownloads = 0;
   
   // 1. Fetch Windows release info from GitHub API (itimt/lbp-iptv-releases)
   try {
@@ -33,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (release.assets) {
             release.assets.forEach(asset => {
               if (asset.name.endsWith('.exe')) {
-                totalDownloads += asset.download_count || 0;
+                winDownloads += asset.download_count || 0;
               }
             });
           }
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (release.assets) {
             release.assets.forEach(asset => {
               if (asset.name.endsWith('.apk')) {
-                totalDownloads += asset.download_count || 0;
+                androidDownloads += asset.download_count || 0;
               }
             });
           }
@@ -79,31 +83,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Erro ao buscar última versão Android do GitHub:', error);
   }
 
-  // 3. Download Counter & Click Tracker
-  const localClicks = parseInt(localStorage.getItem('lbp_download_clicks') || '0', 10);
-  let displayCount = totalDownloads + localClicks;
+  // 3. Download Counters & Click Trackers
+  const localWinClicks = parseInt(localStorage.getItem('lbp_win_clicks') || '0', 10);
+  const localAndroidClicks = parseInt(localStorage.getItem('lbp_android_clicks') || '0', 10);
+
+  let displayWinCount = winDownloads + localWinClicks;
+  let displayAndroidCount = androidDownloads + localAndroidClicks;
 
   const updateCounterUI = () => {
-    if (counterDiv && countNumber) {
-      countNumber.textContent = displayCount.toLocaleString('pt-BR');
-      counterDiv.style.display = 'inline-flex';
+    if (counterWinDiv && countWinNumber) {
+      countWinNumber.textContent = displayWinCount.toLocaleString('pt-BR');
+      counterWinDiv.style.display = 'inline-flex';
+    }
+    if (counterAndroidDiv && countAndroidNumber) {
+      countAndroidNumber.textContent = displayAndroidCount.toLocaleString('pt-BR');
+      counterAndroidDiv.style.display = 'inline-flex';
     }
   };
 
   updateCounterUI();
 
-  const handleDownloadClick = () => {
-    const currentClicks = parseInt(localStorage.getItem('lbp_download_clicks') || '0', 10);
-    localStorage.setItem('lbp_download_clicks', currentClicks + 1);
-    displayCount++;
-    updateCounterUI();
-  };
-
   if (downloadBtn) {
-    downloadBtn.addEventListener('click', handleDownloadClick);
+    downloadBtn.addEventListener('click', () => {
+      const current = parseInt(localStorage.getItem('lbp_win_clicks') || '0', 10);
+      localStorage.setItem('lbp_win_clicks', current + 1);
+      displayWinCount++;
+      updateCounterUI();
+    });
   }
+
   if (downloadBtnAndroid) {
-    downloadBtnAndroid.addEventListener('click', handleDownloadClick);
+    downloadBtnAndroid.addEventListener('click', () => {
+      const current = parseInt(localStorage.getItem('lbp_android_clicks') || '0', 10);
+      localStorage.setItem('lbp_android_clicks', current + 1);
+      displayAndroidCount++;
+      updateCounterUI();
+    });
   }
 
   // 4. Smooth Scroll

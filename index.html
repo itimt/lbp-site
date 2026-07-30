@@ -41,32 +41,37 @@
         ✅ <strong>Compatibilidade Total:</strong> Funciona perfeitamente com qualquer lista M3U ou painel Xtream Codes (com tela de login dedicada).
       </div>
       
-      <div class="hero-actions" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px;">
-        <!-- Windows Download -->
-        <a href="https://github.com/itimt/lbp-iptv-releases/releases/download/v1.0.31/LBP-IPTV-Setup-1.0.31.exe" class="btn-primary" id="download-btn">
-          <span class="btn-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
-          </span>
-          <div class="btn-text">
-            <strong>Baixar Agora</strong>
-            <span id="version-label">Versão Mais Recente</span>
+      <div class="hero-actions" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 20px;">
+        <!-- Windows Download Column -->
+        <div class="download-col" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <a href="https://github.com/itimt/lbp-iptv-releases/releases/download/v1.0.31/LBP-IPTV-Setup-1.0.31.exe" class="btn-primary" id="download-btn">
+            <span class="btn-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+            </span>
+            <div class="btn-text">
+              <strong>Baixar Agora</strong>
+              <span id="version-label">Versão Mais Recente</span>
+            </div>
+          </a>
+          <div id="download-counter-win" class="download-counter-badge" style="display: none;">
+            <span class="fire-icon">🔥</span> <span id="download-count-win-number">0</span> downloads
           </div>
-        </a>
+        </div>
         
-        <!-- Android Download -->
-        <a href="https://github.com/itimt/update/releases/download/v1.0.7/LBP-IPTV-Final-v1.0.7.apk" class="btn-primary" id="download-btn-android" style="background: linear-gradient(135deg, #3DDC84 0%, #20B25B 100%); border-color: #3DDC84;">
-          <span class="btn-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.022 3.503C15.5458 8.2435 13.8211 7.7909 12 7.7909c-1.8211 0-3.5458.4526-5.1371 1.1598L4.841 5.4477a.416.416 0 00-.5676-.1521.416.416 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
-          </span>
-          <div class="btn-text">
-            <strong>Baixar Agora</strong>
-            <span id="version-label-android">Versão Mais Recente</span>
+        <!-- Android Download Column -->
+        <div class="download-col" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <a href="https://github.com/itimt/update/releases/download/v1.0.7/LBP-IPTV-Final-v1.0.7.apk" class="btn-primary" id="download-btn-android" style="background: linear-gradient(135deg, #3DDC84 0%, #20B25B 100%); border-color: #3DDC84;">
+            <span class="btn-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0004.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.022 3.503C15.5458 8.2435 13.8211 7.7909 12 7.7909c-1.8211 0-3.5458.4526-5.1371 1.1598L4.841 5.4477a.416.416 0 00-.5676-.1521.416.416 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+            </span>
+            <div class="btn-text">
+              <strong>Baixar Agora</strong>
+              <span id="version-label-android">Versão Mais Recente</span>
+            </div>
+          </a>
+          <div id="download-counter-android" class="download-counter-badge download-counter-badge-android" style="display: none;">
+            <span class="fire-icon">🔥</span> <span id="download-count-android-number">0</span> downloads
           </div>
-        </a>
-      </div>
-      <div class="download-counter-container" style="display: flex; justify-content: center; width: 100%; margin-top: 15px;">
-        <div id="download-counter" class="download-counter-badge" style="display: none;">
-          <span class="fire-icon">🔥</span> <span id="download-count-number">0</span> downloads realizados
         </div>
       </div>
       <div class="beta-notice" style="margin-top: 25px;">
