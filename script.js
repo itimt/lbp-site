@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const version = latestRelease.tag_name;
         
         if (versionLabel) {
-          versionLabel.textContent = `Versão Mais Recente (${version})`;
+          versionLabel.textContent = `Versão Mais Recente`;
         }
         
         if (latestRelease.assets && latestRelease.assets.length > 0) {

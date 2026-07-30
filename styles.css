@@ -183,7 +183,14 @@ h1, h2, h3, .badge {
   box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
 }
 .btn-icon {
-  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+.btn-icon svg {
+  width: 34px;
+  height: 34px;
 }
 .btn-text {
   display: flex;
